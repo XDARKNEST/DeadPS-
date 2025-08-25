@@ -1,0 +1,314 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>DeadPS - Growtopia Private Server</title>
+  <meta name="description" content="DeadPS adalah server private Growtopia yang stabil, aman, dan seru untuk dimainkan. Nikmati pengalaman baru dengan fitur eksklusif hanya di DeadPS.">
+  <link rel="icon" href="https://i.ibb.co.com/0mKQdBN/deadps-logo.png" type="image/png">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script src="https://unpkg.com/lucide@latest"></script>
+  <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+  <style>
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+      background: #0d1117;
+      color: #e6edf3;
+      transition: background 0.3s, color 0.3s;
+    }
+    body.light { background: #f5f5f5; color: #111; }
+    header {
+      background: #161b22; padding: 15px 20px;
+      display: flex; justify-content: space-between; align-items: center;
+      position: sticky; top: 0; z-index: 100;
+    }
+    header.light { background: #fff; }
+    nav { display: flex; gap: 15px; }
+    nav a {
+      text-decoration: none; color: white; font-weight: bold;
+      display: flex; align-items: center; gap: 5px;
+    }
+    body.light nav a { color: #111; }
+    nav a:hover { color: #58a6ff; }
+    .flags img { width: 28px; margin-left: 8px; cursor: pointer; border-radius: 4px; }
+    .hero {
+      text-align: center; padding: 80px 20px;
+      background: linear-gradient(135deg, #0d1117, #161b22);
+    }
+    .hero h1 { color: #3fb950; font-size: 45px; margin-bottom: 15px; }
+    .status {
+      display: inline-block; background: #238636;
+      padding: 10px 20px; border-radius: 20px;
+      font-weight: bold; margin: 10px 0;
+    }
+    .btn {
+      display: inline-block; background: #0969da;
+      padding: 12px 25px; margin-top: 15px; border-radius: 8px;
+      color: white; font-weight: bold; text-decoration: none; transition: 0.2s;
+    }
+    .btn:hover { background: #1f6feb; transform: scale(1.05); }
+    .section {
+      max-width: 900px; margin: 40px auto;
+      background: #161b22; padding: 30px; border-radius: 12px;
+      box-shadow: 0 0 12px rgba(0,0,0,0.5);
+    }
+    body.light .section { background: #fff; box-shadow: 0 0 12px rgba(0,0,0,0.1); }
+    .section h2 { color: #3fb950; margin-bottom: 15px; text-align:center; }
+    .grid {
+      display: grid; gap: 20px;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    }
+    .card {
+      background: #1e1e1e; padding: 20px; border-radius: 12px;
+      text-align: center; transition: 0.3s;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.5);
+    }
+    body.light .card { background: #f9f9f9; }
+    .card:hover { transform: translateY(-5px); border-color: #3fb950; }
+    .card img {
+      border-radius: 10px;
+      width: 120px;
+      height: 120px;
+      object-fit: cover;
+      margin-bottom: 10px;
+    }
+    footer {
+      text-align: center; padding: 20px;
+      background: #161b22; margin-top: 30px; color: #8b949e;
+    }
+    footer.light { background: #fff; color: #333; }
+    .menu-toggle { display: none; cursor: pointer; }
+    @media (max-width: 768px) {
+      nav { display: none; flex-direction: column; background: #161b22;
+        position: absolute; top: 60px; right: 0; padding: 15px; border-radius: 8px; }
+      nav.active { display: flex; }
+      .menu-toggle { display: block; }
+    }
+    #preloader {
+      position: fixed; top:0; left:0; right:0; bottom:0;
+      background:#0d1117; display:flex; align-items:center; justify-content:center;
+      z-index:9999; flex-direction:column; color:white;
+    }
+    #preloader img { width:80px; margin-bottom:20px; }
+  </style>
+</head>
+<body>
+
+  <!-- Preloader -->
+  <div id="preloader">
+    <p>Loading DeadPS...</p>
+  </div>
+
+  <!-- Header -->
+  <header id="header">
+    <div class="menu-toggle" onclick="toggleMenu()"><i data-lucide="menu"></i></div>
+    <nav id="navbar">
+      <a href="#home"><i data-lucide="home"></i> Home</a>
+      <a href="#features"><i data-lucide="star"></i> Features</a>
+      <a href="#stats"><i data-lucide="bar-chart-3"></i> Stats</a>
+      <a href="#tutorial"><i data-lucide="book"></i> Tutorial</a>
+      <a href="#news"><i data-lucide="newspaper"></i> News</a>
+      <a href="#event"><i data-lucide="calendar"></i> Event</a>
+      <a href="#team"><i data-lucide="users"></i> Team</a>
+      <a href="#faq"><i data-lucide="help-circle"></i> FAQ</a>
+      <a href="#contact"><i data-lucide="phone"></i> Contact</a>
+    </nav>
+    <div style="display:flex; align-items:center; gap:10px;">
+      <button onclick="toggleTheme()" title="Toggle Dark/Light"><i data-lucide="sun"></i></button>
+      <div class="flags">
+        <img src="https://flagcdn.com/w20/id.png" alt="ID">
+        <img src="https://flagcdn.com/w20/gb.png" alt="EN">
+      </div>
+    </div>
+  </header>
+
+  <!-- Hero -->
+  <section class="hero" id="home" data-aos="fade-up">
+    <h1>DeadPS</h1>
+    <p>Server private Growtopia yang stabil, aman, dan penuh fitur seru. Nikmati pengalaman baru hanya di DeadPS!</p>
+    <div class="status">Server Status: Online ✅</div><br>
+    <a href="https://www.gtpshost.com/d/DeadPS" target="_blank" class="btn">Login ke DeadPS</a>
+  </section>
+
+  <!-- Stats -->
+  <section class="section" id="stats" data-aos="fade-up">
+    <h2>Statistik DeadPS</h2>
+    <div class="grid">
+      <div class="card"><h3 id="accountCount">0</h3><p>Total Akun</p></div>
+      <div class="card"><h3 id="itemCount">0</h3><p>Custom Items</p></div>
+      <div class="card"><h3 id="uptime">0d 0h 0m 0s</h3><p>Server Uptime</p></div>
+    </div>
+  </section>
+
+  <!-- Features -->
+  <section class="section" id="features" data-aos="fade-up">
+    <h2>Kenapa Memilih DeadPS?</h2>
+    <div class="grid">
+      <div class="card"><i data-lucide="zap"></i><h3>Fast Server</h3><p>Minim lag meski ramai player.</p></div>
+      <div class="card"><i data-lucide="shield-check"></i><h3>Anti Cheat</h3><p>Keamanan canggih anti cheat & scam.</p></div>
+      <div class="card"><i data-lucide="gift"></i><h3>Custom Items</h3><p>Item eksklusif hanya ada di DeadPS.</p></div>
+      <div class="card"><i data-lucide="clock"></i><h3>24/7 Online</h3><p>Server aktif tanpa downtime.</p></div>
+      <div class="card"><i data-lucide="lock"></i><h3>Secure Login</h3><p>Sistem login aman dengan proteksi tambahan.</p></div>
+      <div class="card"><i data-lucide="clock"></i><h3>Events Rutin</h3><p>Event seru setiap minggu & bulan.</p></div>
+      <div class="card"><i data-lucide="shield"></i><h3>Community Support</h3><p>Komunitas aktif dan support 24 jam.</p></div>
+      <div class="card"><i data-lucide="shield"></i><h3>Friendly Staff</h3><p>Tim staff ramah & siap membantu kapan saja.</p></div>
+    </div>
+  </section>
+
+  <!-- Tutorial -->
+  <section class="section" id="tutorial" data-aos="fade-up">
+    <h2>Tutorial Login</h2>
+    <ol>
+      <li>Buka aplikasi Growtopia.</li>
+      <li>Isi <b>Name Server</b> dengan <b>DeadPS</b>.</li>
+      <li>Klik <b>Create Account</b> untuk daftar.</li>
+      <li>Jika sudah punya akun, login pakai username & password.</li>
+      <li>Selamat bermain!</li>
+    </ol>
+  </section>
+
+  <!-- News -->
+  <section class="section" id="news" data-aos="fade-up">
+    <h2>Update & News</h2>
+    <ul>
+      <li>[25 Agu 2025] Event Summer Festival dimulai!</li>
+      <li>[15 Agu 2025] Penambahan 50+ custom items baru.</li>
+      <li>[01 Agu 2025] Server upgrade hardware untuk performa lebih baik.</li>
+    </ul>
+  </section>
+
+  <!-- Event Countdown -->
+  <section class="section" id="event" data-aos="fade-up">
+    <h2>Event Mendatang</h2>
+    <div class="grid">
+      <div class="card">
+        <p>Halloween Event dimulai dalam:</p>
+        <h3 id="countdown-halloween"></h3>
+      </div>
+      <div class="card">
+        <p>Christmas Event dimulai dalam:</p>
+        <h3 id="countdown-christmas"></h3>
+      </div>
+      <div class="card">
+        <p>New Year Event dimulai dalam:</p>
+        <h3 id="countdown-newyear"></h3>
+      </div>
+    </div>
+  </section>
+
+  <!-- Team -->
+  <section class="section" id="team" data-aos="fade-up">
+    <h2>Tim DeadPS</h2>
+    <div class="grid">
+      <div class="card">
+        <img src="https://i.ibb.co.com/NgRjwdbK/images-1.png" alt="Restu">
+        <h3>Restu</h3>
+        <p>Owner</p>
+      </div>
+      <div class="card">
+        <img src="https://i.ibb.co.com/NgRjwdbK/images-1.png" alt="DevX">
+        <h3>DevX</h3>
+        <p>Developer</p>
+      </div>
+      <div class="card">
+        <img src="https://i.ibb.co.com/NgRjwdbK/images-1.png" alt="ModY">
+        <h3>ModY</h3>
+        <p>Moderator</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Testimonials -->
+  <section class="section" id="testimonials" data-aos="fade-up">
+    <h2>Testimoni Player</h2>
+    <blockquote>"Server paling stabil yang pernah saya mainkan!" - Player1</blockquote>
+    <blockquote>"Item customnya keren banget!" - Player2</blockquote>
+    <blockquote>"Staff ramah & helpful." - Player3</blockquote>
+  </section>
+
+  <!-- FAQ -->
+  <section class="section" id="faq" data-aos="fade-up">
+    <h2>FAQ</h2>
+    <details><summary>Apakah gratis?</summary><p>Ya, 100% gratis dimainkan.</p></details>
+    <details><summary>Apakah aman?</summary><p>DeadPS dilengkapi anti cheat & proteksi penuh.</p></details>
+    <details><summary>Support Android & PC?</summary><p>Ya, bisa dimainkan di Android & PC.</p></details>
+  </section>
+
+  <!-- Contact -->
+  <section class="section" id="contact" data-aos="fade-up">
+    <h2>Contact & Support</h2>
+    <p>Bergabung ke Discord resmi kami:</p>
+    <a href="https://discord.gg/HJZgYwYASf" target="_blank" class="btn">Join Discord</a>
+    <a href="https://www.gtpshost.com/d/DeadPS" target="_blank" class="btn">Login ke DeadPS</a>
+  </section>
+
+  <footer id="footer">
+    <p>© 2025 DeadPS - Growtopia Private Server | All Rights Reserved</p>
+  </footer>
+
+  <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+  <script>
+    AOS.init();
+    lucide.createIcons();
+
+    window.onload = () => document.getElementById("preloader").style.display = "none";
+
+    function toggleTheme() {
+      document.body.classList.toggle("light");
+      document.getElementById("header").classList.toggle("light");
+      document.getElementById("footer").classList.toggle("light");
+    }
+
+    function toggleMenu() {
+      document.getElementById("navbar").classList.toggle("active");
+    }
+
+    function animateValue(id, start, end, duration) {
+      let obj = document.getElementById(id);
+      let range = end - start, current = start, increment = end > start ? 1 : -1;
+      let stepTime = Math.abs(Math.floor(duration / range));
+      let timer = setInterval(function() {
+        current += increment; obj.textContent = current;
+        if (current == end) clearInterval(timer);
+      }, stepTime);
+    }
+
+    animateValue("accountCount", 0, 320, 2000);
+    animateValue("itemCount", 0, 800, 2000);
+
+    // Countdown function untuk banyak event
+    function setCountdown(id, date) {
+      let target = new Date(date).getTime();
+      let el = document.getElementById(id);
+      setInterval(() => {
+        let now = new Date().getTime(), distance = target - now;
+        if (distance < 0) { el.innerHTML = "Event sudah dimulai!"; return; }
+        let days = Math.floor(distance / (1000*60*60*24));
+        let hours = Math.floor((distance % (1000*60*60*24))/(1000*60*60));
+        let minutes = Math.floor((distance % (1000*60*60))/(1000*60));
+        let seconds = Math.floor((distance % (1000*60))/1000);
+        el.innerHTML = `${days}d ${hours}h ${minutes}m ${seconds}s`;
+      }, 1000);
+    }
+
+    // Atur jadwal event di sini
+    setCountdown("countdown-halloween", "Oct 31, 2025 00:00:00");
+    setCountdown("countdown-christmas", "Dec 25, 2025 00:00:00");
+    setCountdown("countdown-newyear", "Jan 1, 2026 00:00:00");
+
+    // Server uptime
+    const launchDate = new Date("2025-04-23T00:00:00");
+    setInterval(() => {
+      let now = new Date();
+      let diff = Math.floor((now - launchDate) / 1000);
+      let days = Math.floor(diff / 86400);
+      let hours = Math.floor((diff % 86400) / 3600);
+      let minutes = Math.floor((diff % 3600) / 60);
+      let seconds = diff % 60;
+      document.getElementById("uptime").innerHTML =
+        `${days}d ${hours}h ${minutes}m ${seconds}s`;
+    }, 1000);
+  </script>
+</body>
+</html>
